@@ -8,8 +8,7 @@ export class UsersService {
 
   private readonly BASE_URL: string = process.env.BASE_URL;
 
-  constructor() {
-  }
+  constructor() {}
 
   public async getUsers(): Promise<IUser[]> {
     const response = await axios.get<IUserResponse[]>(`${this.BASE_URL}/users`);

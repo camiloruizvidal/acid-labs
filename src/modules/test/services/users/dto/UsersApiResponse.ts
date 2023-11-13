@@ -1,4 +1,4 @@
-import { ICompany, IUser, IUserResponse } from "src/modules/test/interfaces/IUser.interface";
+import { ICompany, IUser, IUserResponse } from "src/modules/Test/interfaces/IUser.interface";
 
 export class UsersApiResponse implements IUser {
 

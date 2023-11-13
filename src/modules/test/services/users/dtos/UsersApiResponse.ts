@@ -9,7 +9,6 @@ export class UsersApiResponse implements IUser {
   phone: string;
   website: string;
   company: ICompany;
-  address?: string;
 
 
   constructor(response: IUserResponse) {

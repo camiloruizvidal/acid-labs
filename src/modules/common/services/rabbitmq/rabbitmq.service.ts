@@ -8,7 +8,9 @@ export class RabbitmqService {
     private readonly AMQP_URL: string;
 
     constructor() {
-        this.AMQP_URL = `amqp://${process.env.AMQP_HOST}:${process.env.AMQP_PORT}`;
+        this.AMQP_URL = 'amqp://'
+                        + `${process.env.AMQP_USER}:${process.env.AMQP_PASS}@`
+                        + `${process.env.AMQP_HOST}:${process.env.AMQP_PORT}`;
     }
 
     public async sendData(exchange: string, queue: string, data: any): Promise<void> {

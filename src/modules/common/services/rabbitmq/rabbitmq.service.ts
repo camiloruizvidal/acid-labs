@@ -2,10 +2,12 @@ import { Injectable } from '@nestjs/common';
 import * as amqp from 'amqplib';
 import * as retry from 'retry';
 
+
 @Injectable()
 export class RabbitmqService {
 
     public async sendData(exchange: string, queue: string, data: any): Promise<void> {
+
         try {
             const connection = await amqp.connect();
             const channel = await connection.createChannel();
@@ -21,7 +23,8 @@ export class RabbitmqService {
             }, 500);
 
         } catch(error) {
-            console.log(error);
+            throw error;
         }
+
     }
 }

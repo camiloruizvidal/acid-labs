@@ -1,4 +1,4 @@
-# Proyecto Increíble con Nest.js y RabbitMQ
+# Prueba con Nest.js y RabbitMQ
 
 Este es un proyecto Nest.js que se comunica con RabbitMQ.
 ¡Vamos a ejecutar el proyecto!

@@ -1,15 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import * as amqp from 'amqplib';
-import * as retry from 'retry';
 
 
 @Injectable()
 export class RabbitmqService {
 
+    private readonly AMQP_URL: string;
+
+    constructor() {
+        this.AMQP_URL = `amqp://${process.env.AMQP_HOST}:${process.env.AMQP_PORT}`;
+    }
+
     public async sendData(exchange: string, queue: string, data: any): Promise<void> {
 
         try {
-            const connection = await amqp.connect();
+
+            const connection = await amqp.connect(this.AMQP_URL);
             const channel = await connection.createChannel();
 
             await channel.assertExchange(exchange, 'fanout', { durable: false });
@@ -18,9 +24,7 @@ export class RabbitmqService {
 
             channel.sendToQueue(queue, Buffer.from(JSON.stringify(data)));
 
-            setTimeout(() => {
-                connection.close();
-            }, 500);
+            await channel.close();
 
         } catch(error) {
             throw error;

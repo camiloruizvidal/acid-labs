@@ -7,6 +7,16 @@ services:
       - 5672:5672
       - 15672:15672
 
+  nestjs-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: "nestjs-app"
+    ports:
+      - "3000:3000"
+
+    depends_on:
+      - rabbitmq
 networks:
   webnet:
 volumes:

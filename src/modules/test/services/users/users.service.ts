@@ -24,7 +24,7 @@ export class UsersService {
 
     const users: IUser[] = response.data
       .map((user: IUserResponse) => new UsersApiResponse(user))
-      .sort((a, b) => b.id - a.id);
+      .sort((firstUser: IUserResponse, secondUser: IUserResponse) => secondUser.id - firstUser.id);
 
     return users;
   }
